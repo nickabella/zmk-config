@@ -9,6 +9,30 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    macros {
+        prev_tab: prev_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_ALT &kp LEFT_ARROW>,
+                <&macro_release>;
+
+            label = "PREV_TAB";
+        };
+
+        next_tab: next_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND &kp LEFT_ALT &kp RIGHT_ARROW>,
+                <&macro_release>;
+
+            label = "NEXT_TAB";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -43,7 +67,7 @@
 &kp TILDE  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6            &kp F7          &kp F8        &kp F9             &kp F10          &kp F11      &kp F12        &trans  &kp DEL
 &trans     &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans        &trans             &trans           &trans       &trans                 &trans
 &trans     &trans  &trans  &trans  &trans  &trans  &kp LEFT          &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT          &trans           &trans                              &bootloader
-&trans             &trans  &trans  &trans  &trans  &trans            &trans          &trans        &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_MUTE   &trans                 &trans
+&trans             &trans  &trans  &trans  &trans  &trans            &kp C_PREVIOUS  &kp C_NEXT    &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_MUTE   &trans                 &trans
 &trans     &trans          &trans                  &kp C_PLAY_PAUSE                                                   &trans           &kp PAGE_UP  &kp PAGE_DOWN          &mo 2
             >;
         };
